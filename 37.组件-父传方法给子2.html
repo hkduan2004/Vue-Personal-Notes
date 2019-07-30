@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./lib/vue.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--父组件，可以在引用子组件的时候，通过属性绑定（v:bind）的形式，把需要传递给子组件的数据
+        传递到子组件内部-->
+
+    <com2 @func='show'></com2>
+  </div>
+  <template id='temp1'>
+    <div>
+      <h1>这是子组件</h1>
+      <input type="button" value='子组件按钮接受父组件' @click='myclick'>
+    </div>
+  </template>
+
+  <script>
+    /////////////////
+
+
+
+    /////////////////
+    var com2 = {
+      template: '#temp1',
+      data() {
+        return {
+          sonmsg: { name: '大熊', age: 6 }
+        }
+      },
+      methods: {
+        myclick() {
+          this.$emit('func', this.sonmsg)
+        }
+      }
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '123----这是父组件数据',
+      },
+      methods: {
+        show(data) {
+          console.log('调用了父组件身上的show方法-----' + data)
+        }
+      },
+      components: {
+        com2
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./lib/vue.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--父组件，可以在引用子组件的时候，通过属性绑定（v:bind）的形式，把需要传递给子组件的数据
+        传递到子组件内部-->
+    <com1 :fathermsg='msg'></com1>
+    <com1 :fathermsg2='msg'></com1>
+
+  </div>
+
+  <script>
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '123----这是父组件数据',
+      },
+      methods: {
+
+      },
+      components: {
+        com1: {
+          data() {
+            return {
+              title: '123',
+              content: 'qqq'
+            }
+          },
+          template: '<h1 @click="change">这是子组件---- {{fathermsg}}----{{fathermsg2}}</h1>',
+
+          //props里面数据都是只读
+          props: ['fathermsg', 'fathermsg2'],
+          methods: {
+            change() {
+              this.fathermsg = 'this.title'
+              this.fathermsg2 = 'this.title'
+            }
+          },
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
