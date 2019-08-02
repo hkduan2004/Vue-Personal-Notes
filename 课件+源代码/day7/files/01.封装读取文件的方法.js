@@ -11,12 +11,12 @@ const path = require('path')
 //返回读取到的内容
 function getFileByPath (fpath, callback) {
   fs.readFile(fpath, 'utf-8', (err, dataStr) => {
-    if (err) throw err
+    if (err) return callback(err)
     // console.log(dataStr)
-    callback(dataStr)
+    callback(null, dataStr)
   })
 }
 
-var result = getFileByPath(path.join(__dirname, './files/1.txt'), (dataStr) => {
+var result = getFileByPath(path.join(__dirname, './1.txt'), (dataStr) => {
   console.log(dataStr)
 })
