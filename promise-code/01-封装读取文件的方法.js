@@ -19,19 +19,19 @@ fs.readFile(path.join(__dirname,'./files/1.txt'),'utf-8',(err,dataStr)=>{
 */
 
 
-/*
-function getFilesByPath(fpath,callback){
-    fs.readFile(fpath,'utf-8',(err,dataStr)=>{
-        if(err) return callback(err)
-        // return dataStr   return会因为这个函数是异步的原因不能返回值
-        callback(dataStr)
-    })
+
+function getFilesByPath (fpath, callback) {
+  fs.readFile(fpath, 'utf-8', (err, dataStr) => {
+    if (err) return callback(err)
+    // return dataStr   return会因为这个函数是异步的原因不能返回值
+    callback(dataStr)
+  })
 }
 
-let res = getFilesByPath(path.join(__dirname,'./files/1.txt'),(dataStr)=>{
-    console.log(dataStr)
+let res = getFilesByPath(path.join(__dirname, './files/1.txt'), (dataStr) => {
+  console.log(dataStr)
 })
-*/
+
 
 /*
 Promise
